@@ -6,6 +6,8 @@ import { UseDark } from '@vueuse/components'
 <template>
   <use-dark v-slot="{ isDark }">
     <n-config-provider :theme="isDark ? darkTheme : undefined">
+      <n-global-style />
+
       <n-message-provider placement="bottom">
         <n-layout>
           <app-header v-if="!$route.meta.hide_app_header" />
