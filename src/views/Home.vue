@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { aes_encrypt, aes_decrypt, Cipher } from '@/crypto'
-import { encode_base64 } from '@/crypto/utils'
+import { encode_base64 } from '@/utils/base64'
 import { useAccountStore } from '@/stores/account'
 import TotpItem from '@/components/TOTP.vue'
 

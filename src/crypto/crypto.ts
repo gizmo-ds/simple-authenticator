@@ -1,4 +1,4 @@
-import { decode_base64, encode_base64 } from './utils'
+import { decode_base64, encode_base64 } from '@/utils/base64'
 
 export async function pbkdf2(
   key: BufferSource,

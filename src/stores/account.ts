@@ -9,7 +9,7 @@ import {
   stretch_key,
   SymmetricCryptoKey,
 } from '@/crypto'
-import { encode_base64 } from '@/crypto/utils'
+import { encode_base64 } from '@/utils/base64'
 
 export const useAccountStore = defineStore('account', () => {
   const account = ref('')
