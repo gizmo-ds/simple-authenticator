@@ -13,7 +13,7 @@ const message = useMessage()
 
 const timestamp = () => Math.round(new Date().getTime() / 1000)
 
-let countdown = $ref(props.period)
+let countdown = $ref(props.period - (timestamp() % props.period))
 setInterval(
   () => (countdown = props.period - (timestamp() % props.period)),
   1000
