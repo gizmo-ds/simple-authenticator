@@ -107,6 +107,7 @@ async function register(e: MouseEvent) {
 .container {
   height: calc(100vh - 64px - (6px * 2));
   padding: 6px 16px;
+  padding-top: 64px + 6px;
 }
 a {
   color: #63e2b7;
