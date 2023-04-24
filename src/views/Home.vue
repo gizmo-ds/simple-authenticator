@@ -2,10 +2,39 @@
 import { aes_encrypt, aes_decrypt, Cipher } from '@/crypto'
 import { encode_base64 } from '@/utils/base64'
 import { useAccountStore } from '@/stores/account'
+import { init_totp } from '@/totp'
 import TotpItem from '@/components/TOTP.vue'
 
 const message = useMessage()
 const account_store = useAccountStore()
+let initialized = $ref(false)
+
+init_totp()
+  .then(() => (initialized = true))
+  .catch((e) => message.error(e.message))
+
+const test_values = [
+  {
+    period: 30,
+    digits: 6,
+    secret: 'HXGNHYFSZKPSZ6QSIGC27U2IA3UHGPOD',
+  },
+  {
+    period: 30,
+    digits: 6,
+    secret: 'MUEWTR62VS7OJ2SUAS7LQUFU7C7YKZXW',
+  },
+  {
+    period: 30,
+    digits: 6,
+    secret: 'BXQIWLYG4N3YTYO5YDZHPU6A3YJJOSUR',
+  },
+  {
+    period: 30,
+    digits: 6,
+    secret: 'AQEEDTWNAHN6L3BTW3RMGWSNBKPHGSTM',
+  },
+]
 
 let secret_text = $ref('Hello world')
 
@@ -60,11 +89,13 @@ async function decrypt() {
 
     <div style="padding-top: 15px">
       <n-card embedded content-style="padding:0">
-        <totp-item :period="30" :digits="6" secret="" />
-        <totp-item :period="60" :digits="6" secret="" />
-        <totp-item :period="30" :digits="6" secret="" />
-        <totp-item :period="60" :digits="6" secret="" />
-        <totp-item :period="30" :digits="6" secret="" />
+        <totp-item
+          v-for="v in test_values"
+          :period="v.period"
+          :digits="v.digits"
+          :secret="v.secret"
+          :initialized="initialized"
+        />
       </n-card>
     </div>
   </div>

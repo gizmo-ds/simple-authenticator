@@ -12,6 +12,7 @@
     "@vueuse/components": "^10.1.0",
     "@vueuse/core": "^10.1.0",
     "pinia": "^2.0.35",
+    "totp-wasm": "github:gizmo-ds/totp-wasm",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
