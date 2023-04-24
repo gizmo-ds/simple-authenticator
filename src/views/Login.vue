@@ -8,6 +8,7 @@ const message = useMessage()
 const router = useRouter()
 const account_store = useAccountStore()
 const account = useStorage('account', '')
+let account_autofocus = $computed(() => account.value === '')
 const form_ref = $ref<FormInst | null>(null)
 const form_value = $ref({ account: account.value, password: '' })
 const form_rules: FormRules = {
@@ -52,6 +53,7 @@ async function login(e: MouseEvent) {
           show-password-on="click"
           placeholder=""
           v-model:value="form_value.account"
+          :autofocus="account_autofocus"
         />
       </n-form-item>
       <n-form-item label="Master password" path="password">
@@ -60,6 +62,8 @@ async function login(e: MouseEvent) {
           show-password-on="click"
           placeholder=""
           v-model:value="form_value.password"
+          :autofocus="!account_autofocus"
+          @keydown.enter="login"
         />
       </n-form-item>
 
