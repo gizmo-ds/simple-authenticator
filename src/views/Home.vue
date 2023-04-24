@@ -2,6 +2,7 @@
 import { aes_encrypt, aes_decrypt, Cipher } from '@/crypto'
 import { encode_base64 } from '@/crypto/utils'
 import { useAccountStore } from '@/stores/account'
+import TotpItem from '@/components/TOTP.vue'
 
 const message = useMessage()
 const account_store = useAccountStore()
@@ -56,6 +57,16 @@ async function decrypt() {
         <n-button @click="decrypt">Decrypt</n-button>
       </n-space>
     </n-space>
+
+    <div style="padding-top: 15px">
+      <n-card embedded content-style="padding:0">
+        <totp-item :period="30" :digits="6" secret="" />
+        <totp-item :period="60" :digits="6" secret="" />
+        <totp-item :period="30" :digits="6" secret="" />
+        <totp-item :period="60" :digits="6" secret="" />
+        <totp-item :period="30" :digits="6" secret="" />
+      </n-card>
+    </div>
   </div>
 </template>
 
